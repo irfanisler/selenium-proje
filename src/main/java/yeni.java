@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.sql.Driver;
 import java.time.Duration;
 
 
@@ -105,9 +106,16 @@ public class yeni {
         //giriş yap
         driver.findElement(By.cssSelector("button[type=\"submit\"]")).click();
 
+       //Logo tıklama
 
+        driver.findElement(By.cssSelector(".img-fluid")).click();
 
+        //sepet kontrol
+        driver.findElement(By.cssSelector(".header__icon.-shoppingBag")).click();
 
+        //sepet çıkarma
+        driver.findElement(By.cssSelector(".header__basketProductRemove")).click();
+        driver.findElement(By.cssSelector(".btn.-black.o-removeCartModal__button")).click();
 
 
 
@@ -116,5 +124,7 @@ public class yeni {
         String bosSepet = driver.findElement(By.cssSelector(".header__emptyBasketText")).getText();
         Assert.assertEquals(bosSepet,"Sepetiniz Henüz Boş");
         System.out.println("sepetin boş olduğu kontrol edildi.");
+
+        driver.quit();
     }
 }

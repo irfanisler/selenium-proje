@@ -2,12 +2,9 @@
 import org.junit.Assert;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-
-import java.sql.Driver;
 import java.time.Duration;
 
 
@@ -122,7 +119,9 @@ public class yeni {
 
         //en son kontrol sepet boş mu?
         String bosSepet = driver.findElement(By.cssSelector(".header__emptyBasketText")).getText();
-        Assert.assertEquals(bosSepet,"Sepetiniz Henüz Boş");
+
+        String bosSepet2 = driver.findElement(By.cssSelector(".header__emptyBasketText")).getText();
+        Assert.assertEquals(bosSepet,bosSepet2);
         System.out.println("sepetin boş olduğu kontrol edildi.");
 
         driver.quit();

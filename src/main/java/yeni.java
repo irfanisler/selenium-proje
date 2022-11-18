@@ -17,42 +17,43 @@ public class yeni {
         driver.get("https://www.network.com.tr/");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+
+        //Çerezi Geçme
         driver.findElement(By.xpath("//button[@id='onetrust-accept-btn-handler']")).click();
 
         //İlk Sayfa Url
         String firstUrl = driver.getCurrentUrl();
         System.out.println("Başlangıç sayfam: " + firstUrl);
 
-
+        //Google'a Gitme
         WebElement aramakutusu = driver.findElement(By.id("search"));
 
-        //Arama kutusu Ceket
+        //Arama kutusuna Ceket Yazma
         aramakutusu.sendKeys("ceket");
         aramakutusu.submit();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+        Thread.sleep(5000);
 
 
-        //sayfa linki
 
-
+        //Daha Fazla Göster Butonu
         driver.findElement(By.xpath("//button[@class='button -secondary -sm relative']")).click();
 
-        Thread.sleep(3000);
-        //scroll
 
 
-        Thread.sleep(3000);
+        Thread.sleep(5000);
         //indirimli ürünlerde ilkine tıklama
         //System.out.println("deger = " + driver.findElements(By.className(".product__discountPercent")).get(0));
 
-        driver.findElement(By.xpath("//*[@id=\"products\"]/div[3]/div/div[47]/div/div[2]/a/h3")).click();
-
+        driver.findElement(By.xpath("//*[@id=\"products\"]/div[3]/div[1]/div[51]/div/div[2]/a/h3")).click();
+        Thread.sleep(5000);
         //Beden seçme Yazdırma
         String beden = driver.findElement(By.xpath("//*[@id=\"mainContent\"]/div/div[1]/div[2]/div[2]/div/div[5]/div[3]/div[3]/label")).getText();
-        System.out.println("deger= " + beden);
+        System.out.println("1.beden= " + beden);
+
         //Fiyat Kontrol
         String fiyat = driver.findElement(By.cssSelector(".product__price.-actual")).getText();
-        System.out.println("fiyat= " + fiyat);
+        System.out.println("1.fiyat= " + fiyat);
         Thread.sleep(2000);
 
         //Sepete Ekleme
@@ -64,31 +65,15 @@ public class yeni {
 
         Thread.sleep(3000);
         String beden1 = driver.findElement(By.cssSelector("div[class=\"header__basketProductDesc\"]>div:nth-of-type(2)>div")).getText();
-        System.out.println("deger1= " + beden1);
+        System.out.println("2.beden= " + beden1);
         String fiyat1 = driver.findElement(By.cssSelector(".a-product__price.-salePrice")).getText();
-        System.out.println("fiyat1= " + fiyat1);
+        System.out.println("2.fiyat= " + fiyat1);
 
 
         Assert.assertEquals(beden,beden1);
         Assert.assertEquals(fiyat,fiyat1);
-        System.out.println("beden ve fiyat değerleri kontrol edildi.");
+        System.out.println("Beden ve fiyat değerleri kontrol edildi. değerler eşit");
 
-        //eski fiyat
-        //String eskiFiyat = driver.findElement(By.cssSelector(".product__price.-label.-old")).getText();
-        //System.out.println("Eskifiyat= " + eskiFiyat);
-        //String r = eskiFiyat.replace("3.549,00 TL","3.549");
-        //Double eskiFiyat1 = Double.parseDouble(r);
-        // System.out.println(eskiFiyat1);
-
-        // String yeniFiyat = driver.findElement(By.xpath("//*[@id=\"header__desktopBasket\"]/div/div[2]/div/div[2]/span[1]")).getText();
-        //System.out.println("fiyat1= " + yeniFiyat);
-        //String r1 = yeniFiyat.replace("1.299,00 TL","1.299");
-        //Double yeniFiyat1 = Double.parseDouble(r1);
-        //System.out.println(yeniFiyat1);
-
-        //if (eskiFiyat1 > yeniFiyat1) {
-        //     System.out.println("eski fiyatın yeni fiyattan büyük olduğu kontrol edildi.");
-        //}
 
         //sepete devam et
         driver.findElement(By.cssSelector(".button.-primary.header__basket--checkout.header__basketModal.-checkout")).click();
@@ -96,39 +81,43 @@ public class yeni {
         //devam et
         driver.findElement(By.cssSelector(".continueButton.n-button.large.block.text-center.-primary")).click();
 
-        //button'un getText'ini alıp assert edicek kendi Giriş Yap textinle.
-
+        Thread.sleep(2000);
         //email sendkeys
 
         driver.findElement(By.cssSelector("#n-input-email")).sendKeys("irfan.isler2@gmail.com");
+        Thread.sleep(2000);
 
         //password sendkeys
         driver.findElement(By.cssSelector("#n-input-password")).sendKeys("irfan1221.");
+        Thread.sleep(2000);
 
         //giriş yap
         driver.findElement(By.cssSelector("button[type=\"submit\"]")).click();
+        Thread.sleep(2000);
 
-       //Logo tıklama
-
+        //Logo tıklama
+        Thread.sleep(2000);
         driver.findElement(By.cssSelector(".img-fluid")).click();
 
         //sepet kontrol
+        Thread.sleep(2000);
         driver.findElement(By.cssSelector(".header__icon.-shoppingBag")).click();
-
+        Thread.sleep(2000);
         //sepet çıkarma
         driver.findElement(By.cssSelector(".header__basketProductRemove")).click();
+        Thread.sleep(2000);
         driver.findElement(By.cssSelector(".btn.-black.o-removeCartModal__button")).click();
 
 
 
 
-        //en son kontrol sepet boş mu?
+        //En son kontrol sepet boş mu?
         String bosSepet = driver.findElement(By.cssSelector(".header__emptyBasketText")).getText();
-
+        Thread.sleep(2000);
         String bosSepet2 = driver.findElement(By.cssSelector(".header__emptyBasketText")).getText();
         Assert.assertEquals(bosSepet,bosSepet2);
-        System.out.println("sepetin boş olduğu kontrol edildi.");
-
+        System.out.println("Sepetin boş olduğu kontrol edildi.");
+        System.out.println("Test Başarıyla Gerçekleşmiştir");
         driver.quit();
     }
 }

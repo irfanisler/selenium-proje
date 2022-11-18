@@ -43,10 +43,10 @@ public class yeni {
 
         Thread.sleep(5000);
         //indirimli ürünlerde ilkine tıklama
-        //System.out.println("deger = " + driver.findElements(By.className(".product__discountPercent")).get(0));
 
         driver.findElement(By.xpath("//*[@id=\"products\"]/div[3]/div[1]/div[51]/div/div[2]/a/h3")).click();
         Thread.sleep(5000);
+
         //Beden seçme Yazdırma
         String beden = driver.findElement(By.xpath("//*[@id=\"mainContent\"]/div/div[1]/div[2]/div[2]/div/div[5]/div[3]/div[3]/label")).getText();
         System.out.println("1.beden= " + beden);
@@ -60,7 +60,7 @@ public class yeni {
         driver.findElement(By.xpath("//*[@id=\"mainContent\"]/div/div[1]/div[2]/div[2]/div/div[5]/div[3]/div[3]/label")).click();
         driver.findElement(By.cssSelector(".product__button.-addToCart.btn.-black")).click();
 
-        //ürün beden bilgisi
+        //ürün beden ve fiyat bilgisi karşılaştırma
 
 
         Thread.sleep(3000);
@@ -68,7 +68,6 @@ public class yeni {
         System.out.println("2.beden= " + beden1);
         String fiyat1 = driver.findElement(By.cssSelector(".a-product__price.-salePrice")).getText();
         System.out.println("2.fiyat= " + fiyat1);
-
 
         Assert.assertEquals(beden,beden1);
         Assert.assertEquals(fiyat,fiyat1);
@@ -91,7 +90,7 @@ public class yeni {
         driver.findElement(By.cssSelector("#n-input-password")).sendKeys("irfan1221.");
         Thread.sleep(2000);
 
-        //giriş yap
+        //Sign in
         driver.findElement(By.cssSelector("button[type=\"submit\"]")).click();
         Thread.sleep(2000);
 
@@ -103,7 +102,8 @@ public class yeni {
         Thread.sleep(2000);
         driver.findElement(By.cssSelector(".header__icon.-shoppingBag")).click();
         Thread.sleep(2000);
-        //sepet çıkarma
+
+        //sepeten çıkarma
         driver.findElement(By.cssSelector(".header__basketProductRemove")).click();
         Thread.sleep(2000);
         driver.findElement(By.cssSelector(".btn.-black.o-removeCartModal__button")).click();

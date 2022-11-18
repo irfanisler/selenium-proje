@@ -1,4 +1,4 @@
-//import dev.failsafe.internal.util.Assert;
+
 import org.junit.Assert;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -11,6 +11,7 @@ import java.time.Duration;
 public class yeni {
 
     public static void main(String[] args) throws InterruptedException {
+        //Chrome açıp Url'e gitme
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.network.com.tr/");
@@ -18,7 +19,7 @@ public class yeni {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.findElement(By.xpath("//button[@id='onetrust-accept-btn-handler']")).click();
 
-
+        //İlk Sayfa Url
         String firstUrl = driver.getCurrentUrl();
         System.out.println("Başlangıç sayfam: " + firstUrl);
 
@@ -45,16 +46,20 @@ public class yeni {
         //System.out.println("deger = " + driver.findElements(By.className(".product__discountPercent")).get(0));
 
         driver.findElement(By.xpath("//*[@id=\"products\"]/div[3]/div/div[47]/div/div[2]/a/h3")).click();
+
+        //Beden seçme Yazdırma
         String beden = driver.findElement(By.xpath("//*[@id=\"mainContent\"]/div/div[1]/div[2]/div[2]/div/div[5]/div[3]/div[3]/label")).getText();
         System.out.println("deger= " + beden);
+        //Fiyat Kontrol
         String fiyat = driver.findElement(By.cssSelector(".product__price.-actual")).getText();
         System.out.println("fiyat= " + fiyat);
         Thread.sleep(2000);
+
+        //Sepete Ekleme
         driver.findElement(By.xpath("//*[@id=\"mainContent\"]/div/div[1]/div[2]/div[2]/div/div[5]/div[3]/div[3]/label")).click();
         driver.findElement(By.cssSelector(".product__button.-addToCart.btn.-black")).click();
 
         //ürün beden bilgisi
-
 
 
         Thread.sleep(3000);
